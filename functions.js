@@ -77,7 +77,7 @@ function removeSymbols(symbols) {
             }, el)
 
             /*
-            refatoring por reduce 
+            refatoring for reduce 
 
             let txtwithoutSymbols = el
             symbols.forEach(symbol => {
@@ -89,6 +89,25 @@ function removeSymbols(symbols) {
     }
 }
 
+function groupElementsByWords(words) {
+    //Object.values -> return only values of obj ==> {"i've": { element: "i've", quantity: 101 }
+    //to --> { element: "i've", quantity: 101 }
+    return Object.values(words.reduce((acc, word) => {
+        const el = word.toLowerCase()
+        const quantity = acc[el] ? acc[el].quantity + 1 : 1
+        acc[el] = {element: el, quantity: quantity}
+        /*
+        if (acc[el]) {
+            acc[el] += 1
+        } else {
+            acc[el] = 1
+        }
+        */
+        return acc
+        
+    }, {}))
+
+}
 
 module.exports = {
     appReadDir,
@@ -99,7 +118,8 @@ module.exports = {
     removeElementsIfEmpty,
     removeElementsIfInclude,
     removeElementsIfOnlyNumbers,
-    removeSymbols
+    removeSymbols,
+    groupElementsByWords
 
     
 }
