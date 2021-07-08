@@ -3,7 +3,7 @@ const fn = require('./functions')
 
 const caminho =  path.join(__dirname, 'subtitles')
 
-const simbols = [
+const symbols = [
     '.', '?', '-', ',', '"',
     '♪', '_', '<i>', '</i>', '\r',
     '[', ']', '(', ')'
@@ -17,4 +17,5 @@ fn.appReadDir(caminho)
     .then(fn.removeElementsIfEmpty)
     .then(fn.removeElementsIfInclude('-->'))
     .then(fn.removeElementsIfOnlyNumbers)
+    .then(fn.removeSymbols(symbols))
     .then(console.log)

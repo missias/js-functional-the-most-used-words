@@ -44,9 +44,9 @@ function mergeElements(array) {
     return array.join(' ')
 } 
 
-function breakTextBy(simbol) {
+function breakTextBy(symbol) {
     return function(text) {
-        return text.split(simbol)        
+        return text.split(symbol)        
     }
 
 }
@@ -69,6 +69,27 @@ function removeElementsIfOnlyNumbers(array) {
     })
 }
 
+function removeSymbols(symbols) {
+    return function(array) {
+        return array.map(el => {
+            return symbols.reduce((acc, symbol) => {
+                return acc.split(symbol).join('')
+            }, el)
+
+            /*
+            refatoring por reduce 
+
+            let txtwithoutSymbols = el
+            symbols.forEach(symbol => {
+                txtwithoutSymbols = txtwithoutSymbols.split(symbol).join('')
+            });
+            return txtwithoutSymbols
+            */
+        })
+    }
+}
+
+
 module.exports = {
     appReadDir,
     appReadFiles,
@@ -77,7 +98,8 @@ module.exports = {
     breakTextBy,
     removeElementsIfEmpty,
     removeElementsIfInclude,
-    removeElementsIfOnlyNumbers
+    removeElementsIfOnlyNumbers,
+    removeSymbols
 
     
 }
