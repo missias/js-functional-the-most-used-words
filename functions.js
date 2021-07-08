@@ -28,7 +28,7 @@ function appReadFile(path) {
 }
 function appReadFiles(paths) {
     return Promise.all( 
-        paths.map(path => lerArquivo(path))
+        paths.map(path => appReadFile(path))
      )
 }
 
@@ -40,8 +40,44 @@ function elementsEndedIn(pattern) {
 
 }
 
+function mergeElements(array) {
+    return array.join(' ')
+} 
+
+function breakTextBy(simbol) {
+    return function(text) {
+        return text.split(simbol)        
+    }
+
+}
+
+function removeElementsIfEmpty(array) {
+    return array.filter(el =>  el.trim())
+}
+
+function removeElementsIfInclude(pattern ) {
+    return function(array) {
+        return array.filter(el =>  !el.includes(pattern))
+    }
+   
+}
+
+function removeElementsIfOnlyNumbers(array) {
+    return array.filter(el =>  {
+        const num = parseInt(el.trim())
+        return num !== num
+    })
+}
+
 module.exports = {
     appReadDir,
     appReadFiles,
-    elementsEndedIn
+    elementsEndedIn,
+    mergeElements,
+    breakTextBy,
+    removeElementsIfEmpty,
+    removeElementsIfInclude,
+    removeElementsIfOnlyNumbers
+
+    
 }
