@@ -109,6 +109,19 @@ function groupElementsByWords(words) {
 
 }
 
+/*
+asc: order ascending 
+desc: order descending
+*/
+function orderByAttribNumber(attrib , order='asc') {
+    return function(array) {
+        const desc = (o1, o2) => o1[attrib] - o2[attrib]
+        const asc  =  (o1, o2) => o2[attrib] - o1[attrib]
+        return array.sort(order === 'asc' ? asc : desc)
+    }
+}
+
+
 module.exports = {
     appReadDir,
     appReadFiles,
@@ -119,7 +132,8 @@ module.exports = {
     removeElementsIfInclude,
     removeElementsIfOnlyNumbers,
     removeSymbols,
-    groupElementsByWords
+    groupElementsByWords,
+    orderByAttribNumber
 
     
 }
