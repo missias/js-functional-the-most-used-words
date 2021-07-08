@@ -1,7 +1,7 @@
 const path = require('path')
 const fn = require('./functions')
 
-const caminho =  path.join(__dirname, 'subtitles')
+const myPath =  path.join(__dirname, 'subtitles')
 
 const symbols = [
     '.', '?', '-', ',', '"',
@@ -9,7 +9,7 @@ const symbols = [
     '[', ']', '(', ')'
 ]
 
-fn.appReadDir(caminho)
+fn.appReadDir(myPath)
     .then(fn.elementsEndedIn('srt'))
     .then(fn.appReadFiles)
     .then(fn.mergeElements)
