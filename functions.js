@@ -57,7 +57,7 @@ function removeElementsIfEmpty(array) {
 
 function removeElementsIfInclude(pattern ) {
     return function(array) {
-        return array.filter(el =>  !el.includes(pattern))
+        return [...array].filter(el =>  !el.includes(pattern))
     }
    
 }
